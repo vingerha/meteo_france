@@ -85,9 +85,9 @@ class MeteoFranceWeather(CoordinatorEntity, WeatherEntity):
     def __init__(self, coordinator: DataUpdateCoordinator, mode: str) -> None:
         """Initialise the platform with a data instance and station name."""
         super().__init__(coordinator)
-        self._city_name = self.coordinator.data.position["name"]
+        self._city_name = self.coordinator.data.position["name"] + "_" + mode
         self._mode = mode
-        self._unique_id = f"{self.coordinator.data.position['lat']},{self.coordinator.data.position['lon']}" + "_tester"
+        self._unique_id = f"{self.coordinator.data.position['lat']},{self.coordinator.data.position['lon']}"
 
     @property
     def unique_id(self):
