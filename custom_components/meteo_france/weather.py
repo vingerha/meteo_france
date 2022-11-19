@@ -98,7 +98,7 @@ class MeteoFranceWeather(CoordinatorEntity, WeatherEntity):
         super().__init__(coordinator)
         self._city_name = self.coordinator.data.position["name"] + "_" + mode
         self._mode = mode
-        self._unique_id = f"{self.coordinator.data.position['lat']},{self.coordinator.data.position['lon']}"
+        self._unique_id = f"{self.coordinator.data.position['lat']},{self.coordinator.data.position['lon']}" + "_" + mode
 
     @property
     def unique_id(self):
