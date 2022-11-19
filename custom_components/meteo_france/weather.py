@@ -57,22 +57,12 @@ async def async_setup_entry(
 ) -> None:
     """Set up the Meteo-France weather platform."""
     coordinator = hass.data[DOMAIN][entry.entry_id][COORDINATOR_FORECAST]
-
+    print(coordinator)
     async_add_entities(
         [
             MeteoFranceWeather(
                 coordinator,
                 entry.options.get(CONF_MODE, FORECAST_MODE_DAILY),
-            )
-        ],
-        True,
-    )
-    
-    async_add_entities(
-        [
-            MeteoFranceWeather(
-                coordinator,
-                entry.options.get(CONF_MODE, FORECAST_MODE_HOURLY),
             )
         ],
         True,
@@ -96,9 +86,9 @@ class MeteoFranceWeather(CoordinatorEntity, WeatherEntity):
     def __init__(self, coordinator: DataUpdateCoordinator, mode: str) -> None:
         """Initialise the platform with a data instance and station name."""
         super().__init__(coordinator)
-        self._city_name = self.coordinator.data.position["name"] + "_" + mode
+        self._city_name = self.coordinator.data.position["name"]
         self._mode = mode
-        self._unique_id = f"{self.coordinator.data.position['lat']},{self.coordinator.data.position['lon']}" + "_" + mode
+        self._unique_id = f"{self.coordinator.data.position['lat']},{self.coordinator.data.position['lon']}"
 
     @property
     def unique_id(self):
