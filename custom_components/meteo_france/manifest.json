@@ -1,0 +1,10 @@
+{
+  "domain": "meteo_france",
+  "name": "M\u00e9t\u00e9o-France-2",
+  "config_flow": true,
+  "documentation": "https://github.com/vingerha/meteo_france_2/blob/master/README.md",
+  "requirements": ["meteofrance-api==1.1.0"],
+  "iot_class": "cloud_polling",
+  "loggers": ["meteofrance_api"],
+  "version": "0.1.0"
+}
